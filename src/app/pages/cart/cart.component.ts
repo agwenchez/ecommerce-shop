@@ -8,24 +8,6 @@ import { Cart } from "src/app/models";
   templateUrl: "./cart.component.html",
 })
 export class CartComponent implements OnInit {
-  // cart: Cart = {
-  //   items: [
-  //     {
-  //       id: 1,
-  //       product: "https://via.placeholder.com/150",
-  //       name: "Sneakers",
-  //       price: 150,
-  //       quantity: 1,
-  //     },
-  //     {
-  //       id: 2,
-  //       product: "https://via.placeholder.com/150",
-  //       name: "Sneakers",
-  //       price: 150,
-  //       quantity: 1,
-  //     },
-  //   ],
-  // };
   dataSource: CartItem[] = [];
   displayedColums: string[] = [
     "product",
@@ -41,9 +23,8 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource = this.cartService.cart.value.items;
   }
-  getTotal(items: CartItem[]): number {
-    return items.map((item) => item.price * item.quantity)
-    .reduce((acc, curr) => acc + curr, 0)
+  getTotal(): number {
+    return this.cartService.getTotal()
   }
 
   clearAll(){

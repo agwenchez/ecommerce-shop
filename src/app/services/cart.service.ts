@@ -20,20 +20,26 @@ export class CartService {
     this._snackbar.open(`${product.name} added to cart`, "OK", {
       duration: 3000,
     });
-    console.log("Cart Items", this.cart.value.items);
   }
 
   clearAll(): void {
     return this.cart.next({ items: [] });
   }
   deleteByID(id: number) {
-    console.log("ID", id)
     const items = [...this.cart.value.items];
-    console.log("Items", items)
     const filteredItems = items.filter((item) => {
       item.id !== id;
     });
-    console.log("Filtered", filteredItems)
     this.cart.next({ items: filteredItems });
+  }
+
+  getTotal(): number {
+    return this.cart.value.items
+      .map((item) => item.price * item.quantity)
+      .reduce((acc, curr) => acc + curr, 0);
+  }
+
+  getCartItems(): CartItem[] {
+    return this.cart.value.items;
   }
 }
