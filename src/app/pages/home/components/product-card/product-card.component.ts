@@ -10,7 +10,7 @@ export class ProductCardComponent implements OnInit {
   @Output() addProductToCart = new EventEmitter<Product>(undefined);
   product: Product | undefined = {
     id: 1,
-    title: "",
+    title: "Sneakers",
     price: 150,
     category: "shoes",
     description: "some description goes here",
