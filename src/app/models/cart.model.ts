@@ -20,3 +20,5 @@ export interface Product extends BaseProduct {
 export interface Cart {
   items: CartItem[];
 }
+
+export type IncrementOrDecrement = "increment" | "decrement";

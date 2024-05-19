@@ -1,5 +1,5 @@
-import { CartService } from 'src/app/services/cart.service';
-import { CartItem } from "./../../models/cart.model";
+import { CartService } from "src/app/services/cart.service";
+import { CartItem, IncrementOrDecrement } from "./../../models/cart.model";
 import { Component, OnInit } from "@angular/core";
 import { Cart } from "src/app/models";
 
@@ -19,20 +19,25 @@ export class CartComponent implements OnInit {
   ];
 
   constructor(private cartService: CartService) {}
-  
+
   ngOnInit(): void {
-    this.dataSource = this.cartService.cart.value.items;
+    this.loadCartItems();
+  }
+  loadCartItems() {
+    this.cartService.cart$.subscribe((cart) => (this.dataSource = cart.items));
   }
   getTotal(): number {
-    return this.cartService.getTotal()
+    return this.cartService.getTotal();
   }
 
-  clearAll(){
-    this.cartService.clearAll()
+  onClearCart() {
+    this.cartService.clearAll();
   }
 
-  deleteByID(id:number){
-    this.cartService.deleteByID(id)
-    this.dataSource = this.cartService.cart.value.items;
+  onAddOrRemoveQuantity(id: number, operation: IncrementOrDecrement) {
+    this.cartService.addOrRemoveQuantity(id, operation);
+  }
+  onRemoveFromCart(id: number) {
+    this.cartService.removeFromCart(id);
   }
 }
