@@ -1,23 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
+const ROWS_HEIGHT: { [id: number]: number } = {
+  1: 400,
+  3: 335,
+  4: 350,
+};
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
+  selector: "app-home",
+  templateUrl: "./home.component.html",
 })
 export class HomeComponent implements OnInit {
-  cols = 1
-  category = 'shoes'
+  cols = 3;
+  rowHeight = ROWS_HEIGHT[this.cols];
+  category = "shoes";
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  onColumsCountChange(colsNum: number): void {
+    this.cols = colsNum;
+    this.rowHeight = ROWS_HEIGHT[this.cols];
   }
-
-  onColumsCountChange(colsNum: number):void{
-    this.cols = colsNum
+  onShowCategory(category: string): void {
+    this.category = category;
   }
-  onCategorySelectChange(category:string):void{
-    this.category = category
-  }
-
 }
