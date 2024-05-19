@@ -7,6 +7,16 @@ export interface CartItem {
 }
 
 
-export interface Cart{
-    items : CartItem[]
+export interface BaseProduct extends Pick<CartItem, 'id' | 'price'>{
+
+}
+export interface Product extends BaseProduct {
+    title: string;
+    category: string;
+    description: string;
+    image: string;
+}
+
+export interface Cart {
+  items: CartItem[];
 }

@@ -1,3 +1,4 @@
+import { Product } from './../../models/cart.model';
 import { Component, OnInit } from "@angular/core";
 
 const ROWS_HEIGHT: { [id: number]: number } = {
@@ -13,6 +14,7 @@ export class HomeComponent implements OnInit {
   cols = 3;
   rowHeight = ROWS_HEIGHT[this.cols];
   category = "shoes";
+  product : Product | undefined = undefined
 
   constructor() {}
 
@@ -24,5 +26,10 @@ export class HomeComponent implements OnInit {
   }
   onShowCategory(category: string): void {
     this.category = category;
+  }
+
+  onAddToCart(product: Product){
+    this.product = product
+    console.log("Home Product", this.product)
   }
 }

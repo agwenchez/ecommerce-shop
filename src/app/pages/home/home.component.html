@@ -9,32 +9,50 @@
     <app-products-header
       (columnsCountChange)="onColumsCountChange($event)"
     ></app-products-header>
-    <mat-grid-list
-      gutterSize="16"
-      [cols]="cols"
-      [rowHeight]="rowHeight"
-    >
-    <mat-grid-tile>
-        <app-product-card class="w-full" [fullWidhtMode]="cols === 1"></app-product-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-product-card class="w-full" [fullWidhtMode]="cols === 1"></app-product-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-product-card class="w-full" [fullWidhtMode]="cols === 1"></app-product-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-product-card class="w-full" [fullWidhtMode]="cols === 1"></app-product-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-product-card class="w-full" [fullWidhtMode]="cols === 1"></app-product-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-product-card class="w-full" [fullWidhtMode]="cols === 1"></app-product-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-product-card class="w-full" [fullWidhtMode]="cols === 1"></app-product-card>
-    </mat-grid-tile>
-</mat-grid-list>
+    <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="rowHeight">
+      <mat-grid-tile>
+        <app-product-card
+        (addProductToCart)="onAddToCart($event)"
+          class="w-full"
+          [fullWidhtMode]="cols === 1"
+        ></app-product-card>
+      </mat-grid-tile>
+      <!-- <mat-grid-tile>
+        <app-product-card
+          class="w-full"
+          [fullWidhtMode]="cols === 1"
+        ></app-product-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <app-product-card
+          class="w-full"
+          [fullWidhtMode]="cols === 1"
+        ></app-product-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <app-product-card
+          class="w-full"
+          [fullWidhtMode]="cols === 1"
+        ></app-product-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <app-product-card
+          class="w-full"
+          [fullWidhtMode]="cols === 1"
+        ></app-product-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <app-product-card
+          class="w-full"
+          [fullWidhtMode]="cols === 1"
+        ></app-product-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <app-product-card
+          class="w-full"
+          [fullWidhtMode]="cols === 1"
+        ></app-product-card>
+      </mat-grid-tile> -->
+    </mat-grid-list>
   </mat-drawer-content>
 </mat-drawer-container>

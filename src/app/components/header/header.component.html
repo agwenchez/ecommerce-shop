@@ -1,5 +1,5 @@
 <mat-toolbar class="max-w-7xl mx-auto border-x justify-between border-">
-  <a routerLink="home">Agwenchez's store</a>
+  <a routerLink="/home">Agwenchez's store</a>
   <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon [matBadge]="1" matBadgeColor="warn">shopping_cart</mat-icon>
   </button>
@@ -7,10 +7,9 @@
     <div class="p-3 divide-y divide-solid">
         <div class="pb-3 flex justify-between">
             <span class="mr-16">1 Items</span>
-            <a routerLink="cart">View cart</a>
+            <a routerLink="/cart">View cart</a>
         </div>
         <div class="py-3">
-
             <div class="flex justify-between font-light mb-2">
                 keyboard X 1
                 <span class="font-bold mt-2">{{ '150' | currency}}</span>

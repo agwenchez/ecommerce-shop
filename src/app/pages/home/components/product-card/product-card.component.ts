@@ -1,14 +1,27 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Product } from "src/app/models";
 
 @Component({
-  selector: 'app-product-card',
-  templateUrl: './product-card.component.html'
+  selector: "app-product-card",
+  templateUrl: "./product-card.component.html",
 })
 export class ProductCardComponent implements OnInit {
- @Input() fullWidhtMode = false
-  constructor() { }
+  @Input() fullWidhtMode = false;
+  @Output() addProductToCart = new EventEmitter<Product>(undefined);
+  product: Product | undefined = {
+    id: 1,
+    title: "",
+    price: 150,
+    category: "shoes",
+    description: "some description goes here",
+    image: "https://api.placeholder.com/150",
+  };
 
-  ngOnInit(): void {
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  handleAddToCart() {
+    this.addProductToCart.emit(this.product);
   }
-
 }
