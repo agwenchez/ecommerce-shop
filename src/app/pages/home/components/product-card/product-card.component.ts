@@ -14,7 +14,7 @@ export class ProductCardComponent implements OnInit {
     price: 150,
     category: "shoes",
     description: "some description goes here",
-    image: "https://api.placeholder.com/150",
+    image: "https://via.placeholder.com/150",
   };
 
   constructor() {}

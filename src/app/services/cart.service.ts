@@ -12,9 +12,14 @@ export class CartService {
   constructor(private _snackbar: MatSnackBar) {}
 
   addToCart(product: CartItem): void {
-    const items = [...this.cartSubject.value.items];
-    const itemInCart = items.find((_item) => _item.id === product.id);
-    itemInCart ? (itemInCart.quantity += 1) : items.push(product);
+    const currentCart = this.cartSubject.value;
+    const items = currentCart.items.map((item) =>
+      item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+    );
+
+    if (currentCart.items.some((item) => item.id === product.id)) {
+      items.push({ ...product, quantity: 1 });
+    }
 
     this.cartSubject.next({ items });
     this._snackbar.open(`${product.name} added to cart`, "OK", {
@@ -23,7 +28,9 @@ export class CartService {
   }
 
   addOrRemoveQuantity(id: number, operation: IncrementOrDecrement) {
-    const itemInCart = this.cartSubject.value.items.find((item) => item.id === id);
+    const itemInCart = this.cartSubject.value.items.find(
+      (item) => item.id === id
+    );
     if (itemInCart) {
       switch (operation) {
         case "increment":
@@ -42,14 +49,15 @@ export class CartService {
   }
 
   clearAll(): void {
-    return this.cartSubject.next({ items: [] });
+    this.cartSubject.next({ items: [] });
+    this._snackbar.open(`Cart cleared successfully`, "OK", {
+      duration: 3000,
+    });
   }
   removeFromCart(id: number) {
-    const items = [...this.cartSubject.value.items];
-    const filteredItems = items.filter((item) => {
+    this.cartSubject.value.items.filter((item) => {
       item.id !== id;
     });
-    this.cartSubject.next({ items: filteredItems });
   }
 
   getTotal(): number {

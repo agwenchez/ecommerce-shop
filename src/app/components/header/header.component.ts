@@ -18,7 +18,6 @@ export class HeaderComponent {
 
   @Input()
   get cart(): Cart {
-    console.log("Cart", this._cart)
     return this._cart;
   }
   set cart(cart: Cart) {
